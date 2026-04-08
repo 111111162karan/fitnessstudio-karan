@@ -1,0 +1,7 @@
+components:
+- layout_properties: {column: PNAABC}
+  name: button_1
+  properties: {text: Anmelden}
+  type: Button
+container: {type: DataRowPanel}
+is_package: true
