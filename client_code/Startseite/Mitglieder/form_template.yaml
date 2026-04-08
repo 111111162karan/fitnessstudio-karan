@@ -1,0 +1,26 @@
+components:
+- components:
+  - components:
+    - event_bindings: {}
+      name: repeating_panel_mitglieder
+      properties: {item_template: Startseite.Mitglieder.RowTemplate2}
+      type: RepeatingPanel
+    layout_properties: {grid_position: 'UAPQZV,CQGFJX'}
+    name: data_grid_1
+    properties:
+      columns:
+      - {data_key: Mitglied_column, id: JKSDUP, title: Mitglied}
+      - {data_key: Anmelde_column, id: VJQQOR, title: Anmelden}
+    type: DataGrid
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {}
+  type: ColumnPanel
+- layout_properties: {slot: nav-right}
+  name: navbar_links
+  properties: {}
+  type: FlowPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true

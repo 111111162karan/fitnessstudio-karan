@@ -9,18 +9,34 @@ class Startseite(StartseiteTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.repeating_panel_kurse.set_event_handler(
+      "x-row-action",
+      self.kurs_ausgewaehlt
+    )
+    # Any code you write here will run before the form opens.
+
+  @handle("repeating_panel_kurse", "show")
+  def repeating_panel_kurse_show(self, **event_args):
+    """This method is called when the repeating panel is shown on the screen"""
     kurse = anvil.server.call("Get_Startseite_Data")
+    print(kurse)
 
     self.repeating_panel_kurse.items = [
       {
-        "kurs_KID": k[0],
-        "kurs_Bezeichnung": k[1],
-        "kurs_Wochentag": k[2],
-        "kurs_Uhrzeit": k[3],
-        "trainer_Name": k[4],
-        "kurs_Teilnehmer": f"{k[5]}/{k[6]}"
+        "Kurs_column": k[0],
+        "Wochentag_column": k[1],
+        "Uhrzeit_column": k[2],
+        "Trainer_column": f"{k[3]} {k[4]}",
+        "Teilnehmer_column": k[5]
+
       }
       for k in kurse
     ]
 
-    # Any code you write here will run before the form opens.
+    
+  def kurs_ausgewaehlt(self, kid, **event_args):
+    self.selected_kid = kid
+    open_form('Startseite.Mitglieder', selected_kid = self.selected_kid)
+
+
+    

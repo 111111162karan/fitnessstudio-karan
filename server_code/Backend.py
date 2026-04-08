@@ -16,20 +16,32 @@ def sql_query(query):
 
 @anvil.server.callable
 def Get_Startseite_Data():
-  sql_query("""
+  return sql_query("""
   SELECT 
     k.KID,
-    k.Bezeichnung,
     k.Wochentag,
     k.Uhrzeit,
-    t.Vorname || ' ' || t.Nachname AS Trainer,
-    COUNT(a.AID) AS Teilnehmer,
-    k.Max_Teilnehmer
-  FROM Kurs k
-  LEFT JOIN Trainer t ON k.TID = t.TID
-  LEFT JOIN Anmeldung a ON k.KID = a.KID
-  GROUP BY k.KID;
-  """)
+    t.Vorname AS Trainer,
+    t.Nachname AS Trainer,
+    COUNT(a.AID) || '/' || k.Max_Teilnehmer AS Teilnehmer
+    FROM Kurs k
+    LEFT JOIN Trainer t ON k.TID = t.TID
+    LEFT JOIN Anmeldung a ON k.KID = a.KID
+    GROUP BY k.KID;
+      """)
+
+@anvil.server.callable
+def get_verfuegbare_mitglieder(kid):
+  with sqlite3.connect(data_files["Özcelik_Karan_fitnessstudio.db"]) as conn:
+    cursor = conn.cursor()
+    cursor.execute("""SELECT m.MID, m.Vorname, m.Nachname
+                      FROM Mitglied m
+                      WHERE m.MID NOT IN (
+                          SELECT MID FROM Anmeldung WHERE KID = ?
+                      )
+                      """, (kid,))
+    result = cursor.fetchall()
+  return result
   
 
     

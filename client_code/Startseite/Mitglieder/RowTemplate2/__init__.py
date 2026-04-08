@@ -1,21 +1,14 @@
-from ._anvil_designer import RowTemplate1Template
+from ._anvil_designer import RowTemplate2Template
 from anvil import *
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-class RowTemplate1(RowTemplate1Template):
+
+class RowTemplate2(RowTemplate2Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-
-  @handle("button_1", "click")
-  def button_1_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    self.parent.raise_event(
-      "x-row-action",
-      kid=self.item["Kurs_column"]
-    )

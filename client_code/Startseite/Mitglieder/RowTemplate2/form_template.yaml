@@ -1,6 +1,5 @@
 components:
-- event_bindings: {}
-  layout_properties: {column: PNAABC}
+- layout_properties: {column: VJQQOR}
   name: button_1
   properties: {text: Anmelden}
   type: Button

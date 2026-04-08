@@ -1,7 +1,9 @@
 components:
 - components:
   - components:
-    - name: repeating_panel_1
+    - data_bindings: []
+      event_bindings: {}
+      name: repeating_panel_kurse
       properties: {item_template: Startseite.RowTemplate1}
       type: RepeatingPanel
     layout_properties: {grid_position: 'BYTSNA,IKIUIP'}
@@ -11,10 +13,11 @@ components:
       - {data_key: Kurs_column, id: JKSDUP, title: Kurs}
       - {data_key: Wochentag_column, id: VJQQOR, title: Wochentag}
       - {data_key: Uhrzeit_column, id: OJLQEN, title: Uhrzeit}
-      - {data_key: trainer_column, id: DJVYJX, title: Trainer}
+      - {data_key: Trainer_column, id: DJVYJX, title: Trainer}
       - {data_key: Teilnehmer_column, id: ZRSMIA, title: Teilnehmer}
       - {data_key: Anmelde_column, id: PNAABC, title: Anmelden}
     type: DataGrid
+  event_bindings: {}
   layout_properties: {slot: default}
   name: content_panel
   properties: {}
@@ -28,6 +31,7 @@ components:
   properties: {text: Fitnessstudio Karan}
   type: Label
 container:
+  event_bindings: {}
   properties: {html: '@theme:standard-page.html'}
   type: HtmlTemplate
 is_package: true
