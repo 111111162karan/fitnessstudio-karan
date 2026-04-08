@@ -8,11 +8,11 @@ import sqlite3
 
 @anvil.server.callable
 def sql_query(query):
-  with sqlite3.connect(data_files("Karan_Özcelik_fitnessstudio.db")) as conn:
+  with sqlite3.connect(data_files["Özcelik_Karan_fitnessstudio.db"]) as conn:
     cursor = conn.cursor()
     cursor.execute(query)
     result = cursor.fetchall()
-    return result
+  return result
 
 @anvil.server.callable
 def Get_Startseite_Data():
